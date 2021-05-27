@@ -1,0 +1,34 @@
+{% set name = "restrictedpython" %}
+{% set version = "5.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://files.pythonhosted.org/packages/f2/99/2ca9be64d1f94b8dd97866ec8d909b86ade682a431b071d4b8accaf20797/RestrictedPython-5.1.tar.gz"
+  sha256: 9ae16e500782b41bd1abefd8554ccb26330817bba9ce090d385aa226f1ca83e8
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - RestrictedPython
+  requires:
+    - pytest
+    - pytest-mock
+
+about:
+  home: "https://github.com/zopefoundation/RestrictedPython"
+  license: Zope Public
+  license_family: OTHER
+  summary: "RestrictedPython is a defined subset of the Python language which allows to provide a program input into a trusted environment."
